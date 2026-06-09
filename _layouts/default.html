@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} &middot; {{ site.short_title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="{{ '/' | relative_url }}">
+        <span class="brand-mark">CKRT</span>
+        <span class="brand-text">
+          <span class="brand-line1">Connecticut KUH</span>
+          <span class="brand-line2">Research Training Program</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="primary-nav" class="site-nav" aria-label="Primary">
+        <ul>
+          {% for item in site.nav %}
+          {% assign cur = page.url | remove_first: '/index.html' %}
+          <li>
+            <a href="{{ item.url | relative_url }}"
+               {% if cur == item.url %}aria-current="page"{% endif %}>
+              {{ item.title }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  {% if page.hero %}
+  <section class="hero">
+    <div class="wrap">
+      <h1>{{ page.hero_title | default: page.title }}</h1>
+      {% if page.hero_tagline %}<p class="hero-tagline">{{ page.hero_tagline }}</p>{% endif %}
+      {% if page.hero_cta_url %}<p><a class="btn" href="{{ page.hero_cta_url | relative_url }}">{{ page.hero_cta_text | default: 'Learn more' }}</a></p>{% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  <main id="main" class="wrap page-main">
+    {% unless page.hero %}{% if page.title %}<h1 class="page-title">{{ page.title }}</h1>{% endif %}{% endunless %}
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-col">
+        <p class="footer-brand">Connecticut KUH Research Training Program</p>
+        <p class="footer-muted">Training the next generation of investigators in kidney,
+          urologic, and hematologic research.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-head">Quick links</p>
+        <ul>
+          <li><a href="{{ '/apply/' | relative_url }}">How to Apply</a></li>
+          <li><a href="{{ '/faculty/' | relative_url }}">Faculty &amp; Mentors</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-head">Contact</p>
+        <p class="footer-muted">
+          <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        </p>
+      </div>
+    </div>
+    <div class="wrap footer-legal">
+      <p>&copy; {{ 'now' | date: "%Y" }} Connecticut KUH Research Training Program.
+         Supported in part by the National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK).</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle — the only JS on the site.
+    (function () {
+      var btn = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('primary-nav');
+      if (!btn || !nav) return;
+      btn.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+  </script>
+</body>
+</html>

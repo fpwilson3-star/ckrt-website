@@ -1,0 +1,25 @@
+# --- Private source material: NEVER commit grant documents ---
+_private/
+*.docx
+*.doc
+*.pdf
+*.pptx
+*.xlsx
+
+# Local Claude Code settings (personal, not for the repo)
+.claude/settings.local.json
+
+# OS / editor cruft
+Thumbs.db
+.DS_Store
+desktop.ini
+*.tmp
+
+# Jekyll build output (GitHub Pages builds this server-side)
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Node (only if you add tooling later)
+node_modules/

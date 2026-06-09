@@ -1,0 +1,43 @@
+# --- Site settings ---
+title: "Connecticut KUH Research Training Program"
+short_title: "CKRT"
+description: >-
+  The Connecticut KUH Research Training Program (CKRT) supports the next
+  generation of investigators in kidney, urologic, and hematologic research.
+url: "https://ckrt.org"
+baseurl: ""
+email: "info@ckrt.org"
+
+# --- Build settings ---
+# Custom design — no third-party theme. Just layouts/includes for shared nav & footer.
+markdown: kramdown
+permalink: pretty
+
+# Navigation (edit this list to add/remove/reorder menu items site-wide)
+nav:
+  - title: "Home"
+    url: "/"
+  - title: "About"
+    url: "/about/"
+  - title: "Faculty & Mentors"
+    url: "/faculty/"
+  - title: "Trainees"
+    url: "/trainees/"
+  - title: "How to Apply"
+    url: "/apply/"
+  - title: "Resources"
+    url: "/resources/"
+  - title: "News & Events"
+    url: "/news/"
+  - title: "Publications"
+    url: "/publications/"
+  - title: "Contact"
+    url: "/contact/"
+
+exclude:
+  - _private/
+  - README.md
+  - .gitignore
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
