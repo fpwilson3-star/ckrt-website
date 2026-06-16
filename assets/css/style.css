@@ -198,6 +198,37 @@ tbody tr:nth-child(even) { background: var(--bg-soft); }
 .footer-legal { border-top: 1px solid rgba(255,255,255,.1); padding: 18px 24px 28px; }
 .footer-legal p { color: #8499ab; font-size: .82rem; margin: 0; }
 
+/* --- Leadership lists / core tag --- */
+.leaders { list-style: none; padding: 0; margin: 0; }
+.leaders li { padding: 7px 0; border-bottom: 1px solid var(--line); font-size: .96rem; }
+.leaders li:last-child { border-bottom: 0; }
+.tag {
+  display: inline-block; font-family: "Source Sans 3", sans-serif; font-size: .7rem;
+  font-weight: 700; letter-spacing: .04em; text-transform: uppercase; vertical-align: middle;
+  color: var(--teal-dark); background: var(--bg-tint); border: 1px solid var(--line);
+  border-radius: 999px; padding: 2px 9px; margin-left: 6px;
+}
+
+/* --- FAQ accordion (no JS — native <details>) --- */
+.faq { margin: 1.2em 0 2em; }
+.faq details {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--bg-soft); margin: 10px 0; overflow: hidden;
+}
+.faq summary {
+  cursor: pointer; padding: 16px 44px 16px 20px; position: relative;
+  font-weight: 600; color: var(--navy); list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  font-size: 1.4rem; line-height: 1; color: var(--teal-dark); font-weight: 400;
+}
+.faq details[open] summary::after { content: "\2013"; }
+.faq summary:hover { color: var(--teal-dark); }
+.faq summary:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
+.faq details > *:not(summary) { padding: 0 20px 18px; margin: 0; }
+
 /* --- Responsive --- */
 @media (max-width: 860px) {
   body { font-size: 17px; }

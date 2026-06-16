@@ -28,6 +28,8 @@ nav:
     url: "/apply/"
   - title: "Resources"
     url: "/resources/"
+  - title: "FAQ"
+    url: "/faq/"
   - title: "News & Events"
     url: "/news/"
   - title: "Publications"
