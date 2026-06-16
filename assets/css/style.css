@@ -154,6 +154,8 @@ strong { font-weight: 700; }
   border: 2px solid var(--line);
 }
 .person .name { font-weight: 700; color: var(--navy); display: block; }
+.person .name a { color: inherit; text-decoration: none; }
+.person .name a:hover { color: var(--teal-dark); text-decoration: underline; }
 .person .role { color: var(--muted); font-size: .9rem; }
 
 /* --- Tables --- */
