@@ -6,6 +6,9 @@ _private/
 *.pptx
 *.xlsx
 
+# Exception: the public application flyer is a generated, shareable asset (not a grant doc)
+!assets/CKRT-application-flyer.pdf
+
 # Local Claude Code settings (personal, not for the repo)
 .claude/settings.local.json
 
