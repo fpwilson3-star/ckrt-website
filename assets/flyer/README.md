@@ -20,3 +20,20 @@ The output PDF is intentionally allowed past `.gitignore` (which blocks `*.pdf`)
 via the `!assets/CKRT-application-flyer.pdf` exception — it is a public,
 shareable asset, not a grant document. Keep the PDF in sync with the HTML when
 you commit changes.
+
+# Application cover sheet (fillable PDF)
+
+`cover-sheet.js` is the **source of truth** for the fillable AcroForm
+`assets/CKRT-application-cover-sheet.pdf` (the "general applicant information"
+form). Edit fields/layout there, then rebuild with Node:
+
+```bash
+cd assets/flyer
+npm install        # first time only; installs pdf-lib (node_modules is gitignored)
+npm run build      # writes ../CKRT-application-cover-sheet.pdf
+```
+
+This PDF is allowed past `.gitignore` via the
+`!assets/CKRT-application-cover-sheet.pdf` exception. Keep it in sync with
+`cover-sheet.js` when you commit, and re-check it for label overlaps after
+changing any field text.

@@ -1,0 +1,12 @@
+{
+  "name": "ckrt-cover-sheet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Generator for the CKRT fillable application cover sheet (AcroForm PDF).",
+  "scripts": {
+    "build": "node cover-sheet.js"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}
