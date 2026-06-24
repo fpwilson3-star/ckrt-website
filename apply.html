@@ -8,6 +8,69 @@ description: "Eligibility, selection, and mentorship structure for TL1 appointme
 postdoctoral physician-scientists, and postdoctoral PhD scientists &mdash; pursuing
 research-focused careers in nephrology, urology, or classical hematology.</p>
 
+<h2 id="eligibility">Am I eligible?</h2>
+<p>CKRT is a focused NIH NRSA (TL1) training program, so eligibility is fairly specific.
+Run through this quick self-check before you invest time in an application &mdash; confirm
+each item that applies to you. If you can&rsquo;t confirm one of these, you most likely are
+not eligible for this cycle.</p>
+
+<form class="eligibility-check" id="eligibility-check" aria-describedby="elig-note">
+  <fieldset class="applicant-type">
+    <legend>I am applying as a&hellip;</legend>
+    <label><input type="radio" name="applicant-type" value="predoc"> Predoctoral applicant</label>
+    <label><input type="radio" name="applicant-type" value="postdoc"> Postdoctoral applicant</label>
+  </fieldset>
+  <ul class="checklist">
+    <li><label>
+      <input type="checkbox">
+      <span>My proposed research is <strong>in scope for KUH</strong> &mdash; nephrology, benign
+      (non-malignant) urology, or classical (benign) hematology &mdash; and is
+      <strong>not malignancy-related</strong>. It does not focus on cancer or hematologic
+      malignancy.</span>
+    </label></li>
+    <li><label>
+      <input type="checkbox">
+      <span>I have <strong>identified a primary research mentor at Yale or UConn Health</strong>
+      who is willing to support my application. (Your own affiliation with Yale or UConn Health
+      is not required, but your primary mentor&rsquo;s is.)</span>
+    </label></li>
+    <li><label>
+      <input type="checkbox">
+      <span>I am a <strong>U.S. citizen or permanent resident</strong> (green-card holder), as
+      required for NIH NRSA appointment.</span>
+    </label></li>
+    <li><label>
+      <input type="checkbox">
+      <span>I <strong>hold a doctoral degree</strong> (PhD, MD, or DO) <strong>or am enrolled in
+      a doctoral-degree&ndash;granting program</strong>.</span>
+    </label></li>
+    <li class="predoc-only is-hidden" hidden><label>
+      <input type="checkbox">
+      <span>I have <strong>passed my qualifying examination</strong> (advanced to
+      candidacy).</span>
+    </label></li>
+    <li><label>
+      <input type="checkbox">
+      <span>I am <strong>not currently appointed to another NIH training grant</strong> (e.g., a
+      T32/TL1 or NRSA fellowship), and any prior NRSA support is within NIH aggregate limits
+      (up to 5 years predoctoral, 3 years postdoctoral).</span>
+    </label></li>
+    <li><label>
+      <input type="checkbox">
+      <span>I can commit to a <strong>full-time, mentored research training experience</strong>.</span>
+    </label></li>
+  </ul>
+  <p class="elig-result" role="status" aria-live="polite">
+    <span class="count">0 of 6</span> confirmed. <span class="elig-msg">Choose whether you&rsquo;re
+    applying predoctorally or postdoctorally, then confirm each item.</span>
+  </p>
+</form>
+
+<p id="elig-note" class="footnote">This self-check is a guide, not a formal eligibility
+determination. If you&rsquo;re unsure about any item &mdash; especially prior training-grant
+support or whether your project is in scope &mdash; email
+<a href="mailto:{{ site.email }}">{{ site.email }}</a> before applying.</p>
+
 <h2>Who can apply</h2>
 <ul>
   <li>Predoctoral students, postdoctoral physician-scientists, and postdoctoral PhD scientists
@@ -93,3 +156,49 @@ dedicated mentoring team supporting both research progress and career developmen
   <p>Questions? Email <a href="mailto:{{ site.email }}">{{ site.email }}</a> or see the
   <a href="{{ '/contact/' | relative_url }}">contact page</a>.</p>
 </div>
+
+<script>
+  // "Am I eligible?" self-check — reveals the qualifying-exam item for predoctoral
+  // applicants only, and shows a result once every applicable item is confirmed.
+  (function () {
+    var form = document.getElementById('eligibility-check');
+    if (!form) return;
+    var typeRadios = Array.prototype.slice.call(form.querySelectorAll('input[name="applicant-type"]'));
+    var predocItem = form.querySelector('.predoc-only');
+    var predocBox = predocItem.querySelector('input[type="checkbox"]');
+    var boxes = Array.prototype.slice.call(form.querySelectorAll('.checklist input[type="checkbox"]'));
+    var result = form.querySelector('.elig-result');
+    var countEl = result.querySelector('.count');
+    var msgEl = result.querySelector('.elig-msg');
+
+    function selectedType() {
+      var sel = typeRadios.filter(function (r) { return r.checked; })[0];
+      return sel ? sel.value : null;
+    }
+
+    function update() {
+      var type = selectedType();
+      var isPredoc = type === 'predoc';
+      predocItem.hidden = !isPredoc;
+      predocItem.classList.toggle('is-hidden', !isPredoc);
+      if (!isPredoc) predocBox.checked = false;
+
+      var relevant = boxes.filter(function (b) { return !b.closest('li').hidden; });
+      var n = relevant.filter(function (b) { return b.checked; }).length;
+      var total = relevant.length;
+      var done = !!type && n === total;
+
+      countEl.textContent = n + ' of ' + total;
+      result.classList.toggle('is-ok', done);
+      msgEl.textContent = !type
+        ? 'Choose whether you’re applying predoctorally or postdoctorally, then confirm each item.'
+        : done
+          ? 'You meet the core eligibility criteria — continue to “How to apply” below.'
+          : 'Confirm every item above to check your eligibility.';
+    }
+
+    typeRadios.forEach(function (r) { r.addEventListener('change', update); });
+    boxes.forEach(function (b) { b.addEventListener('change', update); });
+    update();
+  })();
+</script>
