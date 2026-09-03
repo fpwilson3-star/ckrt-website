@@ -194,11 +194,6 @@ tbody tr:nth-child(even) { background: var(--bg-soft); }
   padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 1.5em 0;
 }
 .note.warn { border-left-color: var(--gold); background: #fdf6e7; }
-.placeholder {
-  border: 1px dashed var(--gold); background: #fdf6e7; color: #7a5b12;
-  padding: 14px 18px; border-radius: 8px; margin: 1.2em 0; font-size: .95rem;
-}
-.placeholder::before { content: "✎ Placeholder — "; font-weight: 700; }
 
 /* --- News / list items --- */
 .news-item { padding: 20px 0; border-bottom: 1px solid var(--line); }

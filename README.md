@@ -23,9 +23,7 @@ Each page is a single file in this folder:
 | Contact | `contact.html` |
 
 The top of each file has a small `--- ... ---` block (the "front matter") — leave it
-alone and edit the HTML below it. Anything wrapped in a yellow dashed
-"Placeholder" box on the live site is marked in the source with
-`<div class="placeholder">…</div>` and is meant to be replaced.
+alone and edit the HTML below it.
 
 - **Navigation menu** (the links in the header): edit the `nav:` list in `_config.yml`.
 - **Site title, email, description**: also in `_config.yml`.
