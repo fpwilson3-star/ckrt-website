@@ -156,9 +156,9 @@ async function main() {
   // ================ RESEARCH & MENTORSHIP ================
   sectionHeading('Research & mentorship');
   checkboxRow('KUH DISCIPLINE', [
-    { name: 'discNephrology', label: 'Nephrology' },
-    { name: 'discHematology', label: 'Classical (benign) hematology' },
+    { name: 'discNephrology', label: 'Benign nephrology' },
     { name: 'discUrology', label: 'Benign urology' },
+    { name: 'discHematology', label: 'Benign (classical) hematology' },
   ]);
   rowFull('researchArea', 'PROPOSED RESEARCH AREA / PROJECT TITLE');
   rowThree(
